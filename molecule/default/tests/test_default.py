@@ -1,6 +1,7 @@
 import os
 import pytest
 import testinfra.utils.ansible_runner
+from time import sleep
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
@@ -26,7 +27,7 @@ def test_celery_task(host):
 
     # WARNING: If the network is particularly slow the download of busybox
     # may take too long
-    for i in xrange(20):
+    for i in range(20):
         got_outputs = (host.file('/tmp/celery/log.out').exists and
                        host.file('/tmp/celery/output.txt').exists)
         # Sleep first to allow time for writing
