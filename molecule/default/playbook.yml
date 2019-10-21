@@ -13,15 +13,15 @@
 - hosts: all
   tasks:
 
-  - name: Create celery test directory
-    become: true
-    file:
-      path: /tmp/celery
-      owner: celery
-      state: directory
+    - name: Create celery test directory
+      become: true
+      file:
+        path: /tmp/celery
+        owner: celery
+        state: directory
 
-  - name: Create celery test input
-    become: true
-    copy:
-      dest: /tmp/celery/input.txt
-      content: "hello world"
+    - name: Create celery test input
+      become: true
+      copy:
+        dest: /tmp/celery/input.txt
+        content: "hello world"
