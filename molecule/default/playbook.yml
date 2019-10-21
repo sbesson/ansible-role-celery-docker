@@ -1,8 +1,9 @@
 ---
-- hosts: all
+- name: Converge
+  hosts: all
   roles:
     - role: ome.docker
-      docker_use_ipv4_nic_mtu: True
+      docker_use_ipv4_nic_mtu: true
     - role: ome.redis
     - role: ansible-role-celery-docker
       celery_docker_max_retries: 1
@@ -13,14 +14,14 @@
   tasks:
 
   - name: Create celery test directory
-    become: yes
+    become: true
     file:
       path: /tmp/celery
       owner: celery
       state: directory
 
   - name: Create celery test input
-    become: yes
+    become: true
     copy:
       dest: /tmp/celery/input.txt
       content: "hello world"
